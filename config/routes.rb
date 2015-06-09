@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
   resources :categories do
     resources :products do
       resources :reviews
@@ -6,4 +9,5 @@ Rails.application.routes.draw do
   end
 
   root 'categories#index'
+
 end
