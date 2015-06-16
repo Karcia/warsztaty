@@ -12,8 +12,14 @@
     %nav.navbar.navbar-default
       .container-fluid
         .navbar-header
-          %span.navbar-brand #{AppConfig.workshops_name}
+          = link_to root_path do
+            %span.navbar-brand #{AppConfig.workshops_name}
         %p.navbar-text.navbar-right
+          - if current_user.present?
+            = raw "Loged in as: #{current_user.email} (#{link_to "Logout", destroy_user_session_path, :method => :delete})"
+          - else
+            = link_to "Sign in", new_user_session_path
+          |
           Links should go here
     .container-fluid
       .row

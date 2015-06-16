@@ -7,9 +7,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :products
 
-
-  validates_presence_of :firstname
-  validates_presence_of :lastname
+  validates_presence_of :email, :password, :firstname, :lastname
 
   def admin?
   	is_admin
