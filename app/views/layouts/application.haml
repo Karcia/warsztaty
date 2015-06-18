@@ -14,6 +14,8 @@
         .navbar-header
           = link_to root_path do
             %span.navbar-brand #{AppConfig.workshops_name}
+          - flash.each do |name, msg|
+            = content_tag :div, msg, class: name
         %p.navbar-text.navbar-right
           - if current_user.present?
             = raw "Loged in as: #{current_user.email} (#{link_to "Logout", destroy_user_session_path, :method => :delete})"
