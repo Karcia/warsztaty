@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   expose(:categories)
   expose(:category)
-  expose(:product) { Product.new }
+  expose(:product) { Product.new(user: current_user) }
 
   def index
   end

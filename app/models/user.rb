@@ -12,4 +12,12 @@ class User < ActiveRecord::Base
   def admin?
   	is_admin
   end
+
+  def full_name
+    s = ""
+    s += firstname if firstname.present?
+    s += " " if firstname.present? and lastname.present?
+    s += lastname if lastname.present?
+    s
+  end
 end
