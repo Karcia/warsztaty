@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :products
 
-  validates_presence_of :email, :password, :firstname, :lastname
+  validates_presence_of :email, :firstname, :lastname
+  validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
+  validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
+
+  mount_uploader :avatar, AvatarUploader
 
   def admin?
   	is_admin

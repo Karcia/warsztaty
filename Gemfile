@@ -21,6 +21,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'spring'

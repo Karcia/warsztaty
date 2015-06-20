@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'users/:user_id', to: 'users#show', as: :user
+  get   'users/:user_id', to: 'users#show', as: :user
+  patch 'users/:user_id', to: 'users#update', as: :user_update
 
   root 'categories#index'
 end

@@ -1,0 +1,13 @@
+%label Avatar:
+= image_tag(user.avatar.thumb.url) if user.avatar?
+- if user == current_user
+  = form_for user, url: user_update_path, html: { multipart: true } do |f|
+    - if user.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(user.errors.count, "error")} prohibited this user from being saved:"
+        %ul
+          - user.errors.full_messages.each do |msg|
+            %li= msg
+    = f.file_field :avatar
+    = f.hidden_field :avatar_cache
+    = f.submit "Upload photo"
