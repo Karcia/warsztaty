@@ -5,7 +5,8 @@
       %ul
         - product.errors.full_messages.each do |msg|
           %li= msg
-  %h3= "Owner: #{product.user.full_name}"
+  - if current_user.present?
+    %h3= "Owner: #{product.user.full_name}"
   .form-group
     = f.label :title
     = f.text_field :title, class: 'form-control'
