@@ -1,19 +1,23 @@
 %p
   = link_to "<< Back to category", category_path(category), class: 'btn btn-success'
 
+
+%h4 Product info:
+%table.table-striped.products-table
 %p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
+  Category
+  %b= product.category.name
 
 %p
-  %b Category
-  = product.category.name
+  Title:
+  %b= product.title
+%p
+  Description:
+  %b= product.description
+%p
+  Price:
+  %b= product.price
+
 
 %h3 Reviews
 = render 'reviews/form'
