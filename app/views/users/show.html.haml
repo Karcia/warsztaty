@@ -1,0 +1,29 @@
+%h2
+  About user:
+  %h3
+    User email:
+    = user.email
+
+  .user-info
+    First name:
+    = user.firstname
+    %br
+    Last name:
+    = user.lastname
+
+.user-reviews
+  %b Newest reviews of this user:
+  %br
+  - user.reviews.last(5).each do |r|
+    Created:
+    = r.created_at.strftime("%D-%M-%Y")
+    %br
+    - if r.product
+      Reviewed product:
+      = "#{r.product.title}(id: #{r.product.id}, price: #{r.product.price})"
+    .review-content
+      Review content:
+      = r.content
+    .review-rating
+      Review raiting:
+      = r.rating

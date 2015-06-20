@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'categories#index'
+  get 'users/:user_id', to: 'users#show', as: :user
 
+  root 'categories#index'
 end
