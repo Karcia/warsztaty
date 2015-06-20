@@ -1,17 +1,40 @@
-%p#notice= notice
+.page-title
+  %h2
+    Category:
+    %b
+      = category.name
+    = link_to 'Back', categories_path, class: 'btn btn-sm btn-success'
+    = link_to 'Edit', edit_category_path(category), class: "btn btn-sm btn-primary"
 
-%p
-  %b Name:
-  = category.name
+.newest-products
+  .row
+    .col-md-1
+    .col-md-8
+      %h4 Newest products:
+      %table.table-striped.products-table
+        %thead
+          %tr
+            %th #
+            %th Name
+            %th Price
+            %th Owner
+        - category.products.order("created_at DESC").limit(5).each do |product|
+          %tr
+            %td= product.id
+            %td= link_to product.title, category_product_path(category, product), class: "btn btn-link"
+            %td= product.price
+            %td
+              = link_to product.user.full_name, user_path(product.user), class: "btn btn-link" if product.user
+      %br
+      = link_to "Show all products >>", category_products_path(category), class: 'btn btn-success'
+    .col-md-3
 
-%p
-  - category.products.each do |product|
-    = product.title
-
-%p
-  %h3 New product
-  = render 'products/form'
-
-= link_to 'Edit', edit_category_path(category)
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+.new-product-module.row
+  .col-md-1
+  .col-md-8
+    .panel.panel-info
+      .panel-heading
+        %h3.panel-title New product
+      .panel-body
+        = render 'products/form'
+  .col-md-3

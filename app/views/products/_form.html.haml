@@ -5,9 +5,6 @@
       %ul
         - product.errors.full_messages.each do |msg|
           %li= msg
-  - if current_user.present?
-    %h3
-      != "Owner: #{link_to product.user.full_name, user_path(product.user.id)}"
   .form-group
     = f.label :title
     = f.text_field :title, class: 'form-control'
@@ -18,4 +15,4 @@
     = f.label :price
     = f.number_field :price, step: 0.01, class: 'form-control'
 
-  = f.submit 'Save', class: 'btn btn-default'
+  = f.submit 'Save', class: 'btn btn-primary'

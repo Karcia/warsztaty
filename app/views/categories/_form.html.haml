@@ -10,4 +10,5 @@
     = f.label :name
     = f.text_field :name, class: 'form-control'
 
-  = f.submit 'Save', class: 'btn btn-default'
+  = link_to 'Back', categories_path, class: 'btn btn-success'
+  = f.submit 'Save', class: 'btn btn-primary'
