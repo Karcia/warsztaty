@@ -15,6 +15,6 @@
     = f.text_area :description, class: 'form-control'
   .form-group
     = f.label :price
-    = f.text_field :price, class: 'form-control'
+    = f.number_field :price, step: 0.01, class: 'form-control'
 
   = f.submit 'Save', class: 'btn btn-default'
