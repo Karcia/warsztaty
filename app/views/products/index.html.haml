@@ -4,7 +4,7 @@
 .newest-products
   .row
     .col-md-1
-    .col-md-8
+    .col-md-10
       %h3
         Listing products for category:
         %b= category.name
@@ -16,7 +16,7 @@
             %th Description
             %th Price
             %th Owner
-            %th
+            %th.buttons-col
         %tbody
           - @products.each do |product|
             %tr
@@ -25,9 +25,9 @@
               %td= product.description
               %td= product.price
               %td= link_to product.user.full_name, user_path(product.user), class: "btn btn-link" if product.user
-              %td
+              %td.to-right
                 = link_to 'Show', category_product_path(product.category, product), class: "btn btn-sm btn-success"
                 - if product.user == current_user
                   = link_to 'Edit', edit_category_product_path(product.category, product), class: "btn btn-sm btn-primary"
                   = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"
-    .col-md-3
+    .col-md-1
