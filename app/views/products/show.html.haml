@@ -4,7 +4,7 @@
     %b
       = product.title
     = link_to 'Back', category_path(category), class: 'btn btn-sm btn-success'
-    = link_to 'Edit', edit_category_product_path(category.id, product.id), class: "btn btn-sm btn-primary"
+    = link_to 'Edit', edit_category_product_path(category.id, product.id), class: "btn btn-sm btn-primary" if product.user == current_user
 
 .new-product-module.row
   .col-md-1
