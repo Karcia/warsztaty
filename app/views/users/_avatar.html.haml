@@ -1,4 +1,4 @@
-= image_tag(user.avatar.thumb.url) if user.avatar?
+= image_tag(user.avatar.thumb.url)
 - if user == current_user
   .new-avatar
     = form_for user, url: user_update_path, html: { multipart: true } do |f|
