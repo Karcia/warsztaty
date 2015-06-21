@@ -22,8 +22,10 @@
             = link_to "Sign in", new_user_session_path
     .container-fluid.container
       - flash.each do |name, msg|
-        = content_tag :div, msg, class: "alert alert-success" if name == "notice"
-        = content_tag :div, msg, class: "alert alert-danger" if name == "alert"
+        - if name == "notice"
+          = content_tag :div, msg, class: "alert alert-success"
+        - else
+          = content_tag :div, msg, class: "alert alert-danger f_#{name}"
       .row
         .col-lg-12
           = yield

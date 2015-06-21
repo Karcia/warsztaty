@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   before_action :redirect_if_not_owner, only: [:edit, :update]
 
   def index
+    @products = category.products
   end
 
   def show

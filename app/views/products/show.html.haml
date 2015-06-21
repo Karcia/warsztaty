@@ -1,29 +1,44 @@
-%p
-  = link_to "<< Back to category", category_path(category), class: 'btn btn-success'
+.page-title
+  %h2
+    Product:
+    %b
+      = product.title
+    = link_to 'Back', category_path(category), class: 'btn btn-sm btn-success'
+    = link_to 'Edit', edit_category_product_path(category.id, product.id), class: "btn btn-sm btn-primary"
 
+.new-product-module.row
+  .col-md-1
+  .col-md-10
+    .panel.panel-warning
+      .panel-heading
+        %h3.panel-title Product info
+      .panel-body
+        %p
+          Id:
+          %b= product.id
+        %p
+          Title:
+          %b= product.title
+        %p
+          Category:
+          %b= product.category.name
+        %p
+          Description:
+          %b= product.description
+        %p
+          Price:
+          %b= product.price
+  .col-md-1
 
-%h4 Product info:
-%table.table-striped.products-table
-%p
-  Category
-  %b= product.category.name
+%h3 Reviews:
+= render 'reviews/list', product: product
+.new-product-module.row
+  .col-md-1
+  .col-md-10
+    .panel.panel-info
+      .panel-heading
+        %h3.panel-title Create review
+      .panel-body
+        = render 'reviews/form'
+  .col-md-1
 
-%p
-  Title:
-  %b= product.title
-%p
-  Description:
-  %b= product.description
-%p
-  Price:
-  %b= product.price
-
-
-%h3 Reviews
-= render 'reviews/form'
-
-= render reviews
-
-= link_to 'Edit', edit_category_product_path(category.id, product.id)
-\|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'

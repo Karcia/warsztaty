@@ -11,4 +11,5 @@
     = f.text_field :name, class: 'form-control'
 
   = link_to 'Back', categories_path, class: 'btn btn-success'
+  = link_to 'Show', category, class: 'btn btn-success' if category.persisted?
   = f.submit 'Save', class: 'btn btn-primary'

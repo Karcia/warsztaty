@@ -1,24 +1,30 @@
 %p
   = link_to "<< Back to category", category_path(category), class: 'btn btn-success'
 
-%h1 Listing products
-
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
-
-  - products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      %td= link_to 'Edit', edit_category_product_path(product.category, product)
-      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+.newest-products
+  .row
+    .col-md-1
+    .col-md-8
+      %h3
+        Listing products for category:
+        %b= category.name
+      %table.table.table-striped
+        %thead
+          %tr
+            %th #
+            %th Title
+            %th Description
+            %th Price
+            %th
+            %th
+        %tbody
+          - @products.each do |product|
+            %tr
+              %td= product.id
+              %td= product.title
+              %td= product.description
+              %td= product.price
+              %td= link_to 'Show', category_product_path(product.category, product), class: "btn btn-sm btn-success"
+              %td= link_to 'Edit', edit_category_product_path(product.category, product), class: "btn btn-sm btn-primary"
+              %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"
+    .col-md-3

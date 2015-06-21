@@ -2,11 +2,14 @@
 
 %table.table
   %tr
+    %th #
     %th Name
     %th
 
   - categories.each do |category|
     %tr
+      %td
+        =category.id
       %td.info-column
         = category.name
       %td.buttons-column
