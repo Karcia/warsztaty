@@ -4,13 +4,13 @@
     %b
       = category.name
     = link_to 'Back', categories_path, class: 'btn btn-sm btn-success'
-    = link_to 'Edit', edit_category_path(category), class: "btn btn-sm btn-primary"
+    = link_to 'Edit', edit_category_path(category), class: "btn btn-sm btn-primary" if current_user.present? && current_user.admin?
 
 .newest-products.row
   .col-md-1
   .col-md-10
     %h4 Newest products:
-    %table.table.table-striped.products-table
+    %table.table.table-striped.wide-table
       %thead
         %tr
           %th #

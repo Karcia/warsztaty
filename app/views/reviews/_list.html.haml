@@ -7,8 +7,9 @@
         %tr
           %th #
           %th Rating
-          %th Content
+          %th.content-col Content
           %th Author
+          %th.date-col Created
       %tbody
         - product.reviews.order("created_at DESC").each do |r|
           %tr
@@ -16,4 +17,5 @@
             %td= r.rating
             %td= r.content
             %td= link_to r.user.full_name, user_path(r.user), class: "btn btn-link" if r.user
+            %td= r.created_at.strftime("%d-%m-%Y")
   .col-md-1

@@ -1,31 +1,85 @@
-%h2
-  About user:
-  %h3
-    User email:
-    = user.email
-  .user-photo
-    = render "avatar", user: user
+.page-title
+  %h2
+    User:
+    %b= user.email
+    = link_to 'Back', request.referer || root_path, class: 'btn btn-sm btn-success'
 
-  .user-info
-    First name:
-    = user.firstname
-    %br
-    Last name:
-    = user.lastname
+.row.info-container
+  .col-md-1
+  .col-md-10
+    .row
+      .col-md-4
+        .panel.panel-warning
+          .panel-heading
+            %h3.panel-title Avatar:
+          .panel-body.user-avatar
+            = render "avatar", user: user
+      .col-md-8
+        .panel.panel-warning
+          .panel-heading
+            %h3.panel-title Info:
+          .panel-body
+            %table.table.wide-table
+              %tbody
+                %tr
+                  %td ID:
+                  %td.content-col= user.id
+                %tr
+                  %td Email:
+                  %td= user.email
+                %tr
+                  %td Firstname:
+                  %td= user.firstname
+                %tr
+                  %td Last name:
+                  %td= user.lastname
+                %tr
+                  %td Join at:
+                  %td= user.created_at.strftime("%d-%m-%Y %H:%M")
+  .col-md-1
 
-.user-reviews
-  %b Newest reviews of this user:
-  %br
-  - user.reviews.last(5).each do |r|
-    Created:
-    = r.created_at.strftime("%D-%M-%Y")
-    %br
-    - if r.product
-      Reviewed product:
-      = "#{r.product.title}(id: #{r.product.id}, price: #{r.product.price})"
-    .review-content
-      Review content:
-      = r.content
-    .review-rating
-      Review raiting:
-      = r.rating
+.user-reviews.row
+  .col-md-1
+  .col-md-10
+    %h4 Reviews of this user:
+    %table.table.table-striped
+      %thead
+        %tr
+          %th #
+          %th Rating
+          %th.content-col Content
+          %th Product
+          %th.date-col Created
+      %tbody
+        - user.reviews.order("created_at DESC").each do |r|
+          %tr
+            %td= r.id
+            %td= r.rating
+            %td= r.content
+            %td= link_to r.product.title, category_product_path(r.product.category, r.product), class: "btn btn-link" if r.product
+            %td= r.created_at.strftime("%d-%m-%Y")
+  .col-md-1
+
+.user-products.row
+  .col-md-1
+  .col-md-10
+    %h4 Products of this user:
+    %table.table.table-striped.wide-table
+      %thead
+        %tr
+          %th #
+          %th Name
+          %th Price
+          %th Category
+      %tbody
+        - user.products.order("created_at DESC").each do |product|
+          %tr
+            %td= product.id
+            %td
+              - if product.category
+                = link_to product.title, category_product_path(product.category, product), class: "btn btn-link"
+              - else
+                = product.title
+            %td= product.price
+            %td= link_to product.category.name, category_path(product.category), class: "btn btn-link" if product.category
+  .col-md-1

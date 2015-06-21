@@ -10,10 +10,36 @@
   float: right;
 }
 
-.products-table {
+.wide-table {
   width: 100%;
 }
 
 .new-product-module {
   margin-top: 20px;
+}
+
+.content-col {
+  width: 70%;
+}
+
+.date-col {
+  width: 10%;
+}
+
+.new-avatar {
+  margin-top: 10px;
+}
+
+.new-avatar .btn {
+  margin-top: 5px;
+}
+
+.user-avatar img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-title {
+  margin-bottom: 40px;
 }
