@@ -15,4 +15,7 @@
     = f.label :price
     = f.number_field :price, step: 0.01, class: 'form-control'
 
+  - if product.persisted? && product.category
+    = link_to 'Back', request.referer || category_path(product.category), class: 'btn btn-success'
+    = link_to 'Show', category_product_path(product.category, product), class: 'btn btn-success'
   = f.submit 'Save', class: 'btn btn-primary'
